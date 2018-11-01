@@ -2,12 +2,10 @@
 spring:
   profiles:
     active: dev
-
 #公共配置与profiles选择无关
 mybatis:
   mapper-locations: classpath:mapping/*.xml
   type-aliases-package: com.app.model
-
 
 ---
 
