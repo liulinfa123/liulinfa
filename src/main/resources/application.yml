@@ -1,0 +1,48 @@
+#默认使用配置
+spring:
+  profiles:
+    active: dev
+
+#公共配置与profiles选择无关
+mybatis:
+  mapper-locations: classpath:mapping/*.xml
+  type-aliases-package: com.app.model
+
+
+---
+
+#开发配置
+spring:
+  profiles: dev
+
+#  data:
+#    mongodb:
+#      host: 47.107.87.11
+#      port: 27017
+#      username: root
+#      password: root=-974=##!abc
+#      database: liulinfa
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/test
+    username: root
+    password: 1234
+    driver-class-name: com.mysql.jdbc.Driver
+
+#  data:
+#    mongodb:
+##        host: 47.107.87.11 # mongodb host
+##        port: 27017 # mongodb port
+##        username: root # mongodb username admin:jinzhuan2013; autorp:jz1005linux27017Mdb
+##        password: root=-974=##!abc # mongodb password
+##        authenticationDatabase: admin
+#        uri: mongodb://liulinfa:123456@localhost:27017/test # mongodb authentication database
+
+
+#pagehelper分页插件
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql
+
