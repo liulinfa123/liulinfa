@@ -9,6 +9,10 @@ import lombok.Data;
 public class GetTestDTO {
 
     @ApiModelProperty("姓名")
-    private String name;
+    private String username;
+
+
+    @ApiModelProperty("密码")
+    private String password;
 
 }
