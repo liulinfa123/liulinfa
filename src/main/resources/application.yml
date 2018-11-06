@@ -6,7 +6,10 @@ spring:
 mybatis:
   mapper-locations: classpath:mapping/*.xml
   type-aliases-package: com.app.*.mapping
-
+server:
+  port: 8008
+  servlet:
+    context-path: liulinfa
 ---
 
 #开发配置

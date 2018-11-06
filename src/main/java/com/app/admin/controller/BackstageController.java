@@ -19,9 +19,9 @@ public class BackstageController {
     @PostMapping("text")
     @ApiOperation(value = "测试接口",notes = "接口描述")
     public ResponseMessage text(@RequestBody GetTestDTO getTestDTO){
-        log.info(getTestDTO.getName());
+        log.info(getTestDTO.getPassword());
         System.out.println(getTestDTO);
-        return ResultUtil.success("you name is " + getTestDTO.getName());
+        return ResultUtil.success("you name is " + getTestDTO.getUsername());
     }
 
 
