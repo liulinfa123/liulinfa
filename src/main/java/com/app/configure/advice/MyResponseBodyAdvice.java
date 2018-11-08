@@ -68,7 +68,7 @@ public class MyResponseBodyAdvice implements ResponseBodyAdvice {
         // 解密
         List<String> decryptApiField = sensitivityProperties.getDecryptApiField();
 
-        SecretField serializedField = methodParameter.getMethodAnnotation(SecretField.class);
+//        SecretField serializedField = methodParameter.getMethodAnnotation(SecretField.class);
 
 
         return null;

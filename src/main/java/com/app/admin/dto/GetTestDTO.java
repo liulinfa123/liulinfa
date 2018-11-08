@@ -1,4 +1,4 @@
-package com.app.admin.model;
+package com.app.admin.dto;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

@@ -1,7 +1,7 @@
 package com.app.admin.controller;
 
 
-import com.app.admin.model.GetTestDTO;
+import com.app.admin.dto.GetTestDTO;
 import com.app.exception.ResponseMessage;
 import com.app.utils.ResultUtil;
 import io.swagger.annotations.Api;
