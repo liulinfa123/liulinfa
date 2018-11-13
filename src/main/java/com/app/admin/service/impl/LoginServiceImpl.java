@@ -1,6 +1,6 @@
 package com.app.admin.service.impl;
 
-import com.app.admin.mapping.LoginUserDao;
+import com.app.admin.dao.LoginUserDao;
 import com.app.admin.model.LoginUser;
 import com.app.admin.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,6 @@
 package com.app.admin.service.impl;
 
-import com.app.admin.mapping.UserBackstageDao;
+import com.app.admin.dao.UserBackstageDao;
 import com.app.admin.service.AdminLoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 

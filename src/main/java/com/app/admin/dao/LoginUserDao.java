@@ -1,4 +1,4 @@
-package com.app.admin.mapping;
+package com.app.admin.dao;
 
 import com.app.admin.model.LoginUser;
 

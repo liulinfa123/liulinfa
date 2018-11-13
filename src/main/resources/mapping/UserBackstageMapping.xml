@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper>
-    <insert id="insertUserBackstage" useGeneratedKeys="true" parameterType="UserBackstage">
+<mapper namespace="com.app.admin.dao.UserBackstageDao">
+    <insert id="insertUserBackstage" useGeneratedKeys="true" parameterType="com.app.admin.model.UserBackstage">
         <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.String">
             select UUID()
         </selectKey>
@@ -9,11 +9,11 @@
         #{update_date},#{password},#{phone})
     </insert>
 
-    <select id="findUserBackstageByusername" parameterType="String" resultType="UserBackstage">
+    <select id="findUserBackstageByusername" parameterType="String" resultType="com.app.admin.model.UserBackstage">
           select * from user_backstage where username = #{username} and password = #{password}
     </select>
 
-    <select id="findUserBackstageByphone" parameterType="String" resultType="UserBackstage">
+    <select id="findUserBackstageByphone" parameterType="String" resultType="com.app.admin.model.UserBackstage">
           select * from user_backstage where phone = #{phone} and password = #{password}
     </select>
 

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" ><mapper>
-    <insert id="insertLoginUser" useGeneratedKeys="true" parameterType="LoginUser"  >
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.app.admin.dao.LoginUserDao">
+    <insert id="insertLoginUser" useGeneratedKeys="true" parameterType="com.app.admin.model.LoginUser"  >
         <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.String">
             select UUID()
         </selectKey>
