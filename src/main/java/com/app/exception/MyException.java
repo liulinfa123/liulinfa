@@ -13,6 +13,12 @@ public class MyException extends RuntimeException {
         this.errorMsg = resultEnum.getMsg();
     }
 
+    public MyException(int code,String errorMsg){
+        this.code = code;
+        this.errorMsg = errorMsg;
+    }
+
+
     public int getCode() {
         return code;
     }

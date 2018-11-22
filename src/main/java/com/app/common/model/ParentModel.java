@@ -12,8 +12,23 @@ public class ParentModel {
 
     private String id;
 
-    private long create_date;
+    private long createDate = System.currentTimeMillis();
 
-    private long update_date;
+    private long updateDate;
 
+    public long getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(long createDate) {
+        this.createDate = createDate;
+    }
+
+    public long getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(long updateDate) {
+        this.updateDate = updateDate;
+    }
 }

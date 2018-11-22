@@ -1,19 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.app.admin.dao.UserBackstageDao">
-    <insert id="insertUserBackstage" useGeneratedKeys="true" parameterType="com.app.admin.model.UserBackstage">
+    
+    <resultMap id="userBackstageMap" type="com.app.admin.model.UserBackstage">
+        <id column="id" property="id"  />
+        <result column="create_date" property="createDate" />
+        <result column="update_date" property="updateDate" />
+        <result column="username" property="username" />
+        <result column="password" property="password" />
+        <result column="phone" property="phone" />
+    </resultMap>
+
+    
+    <insert id="insertUserBackstage" useGeneratedKeys="true" parameterType="com.app.admin.model.UserBackstage" >
         <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.String">
             select UUID()
         </selectKey>
-        INSERT INTO user_backstage(id,username,create_date,update_date,password,phone) values (#{id},#{username},#{create_date},
-        #{update_date},#{password},#{phone})
+        INSERT INTO user_backstage(id,username,create_date,update_date,password,phone) values (#{id},#{username},#{createDate},
+        #{updateDate},#{password},#{phone})
     </insert>
 
-    <select id="findUserBackstageByusername" parameterType="String" resultType="com.app.admin.model.UserBackstage">
+    <select id="findUserBackstageByusername"  resultMap="userBackstageMap">
           select * from user_backstage where username = #{username} and password = #{password}
     </select>
 
-    <select id="findUserBackstageByphone" parameterType="String" resultType="com.app.admin.model.UserBackstage">
+    <select id="findUserBackstageByphone" resultMap="userBackstageMap">
           select * from user_backstage where phone = #{phone} and password = #{password}
     </select>
 

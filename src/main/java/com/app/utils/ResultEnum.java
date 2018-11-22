@@ -2,7 +2,7 @@ package com.app.utils;
 
 public enum ResultEnum {
 
-    UNKNOWN_ERROR(400,"未知错误"),SUCCESS(200, "success"),SYSTEM_ERROR(1001,"系统错误");
+    UNKNOWN_ERROR(400,"未知错误"),SUCCESS(200, "success"),SYSTEM_ERROR(1001,"系统错误"),LOGIN_ERROR(400,"帐号或密码错误");
 
 
     private Integer code;

@@ -1,6 +1,7 @@
 package com.app.admin.dao;
 
 import com.app.admin.model.UserBackstage;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * @Author: ben
@@ -8,10 +9,10 @@ import com.app.admin.model.UserBackstage;
  */
 public interface UserBackstageDao {
 
-    int insertUserBackstage(UserBackstage userBackstage);
+    void insertUserBackstage(UserBackstage userBackstage);
 
-    UserBackstage findUserBackstageByusername(String username,String password);
+    UserBackstage findUserBackstageByusername(@Param(value = "username") String username, @Param(value = "password") String password);
 
-    UserBackstage findUserBackstageByphone(String phone,String password);
+    UserBackstage findUserBackstageByphone(@Param(value = "phone") String phone,@Param(value = "password") String password);
 
 }
