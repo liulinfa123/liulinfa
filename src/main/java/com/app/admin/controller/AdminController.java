@@ -3,6 +3,7 @@ package com.app.admin.controller;
 
 import cn.hutool.core.date.DateTime;
 import com.app.admin.dao.UserBackstageDao;
+import com.app.admin.dto.GetLoginDTO;
 import com.app.admin.model.UserBackstage;
 import com.app.admin.service.AdminLoginService;
 import com.app.exception.MyException;
@@ -30,10 +31,11 @@ public class AdminController {
 
     @PostMapping("backstageLogin")
     @ApiOperation(value = "登录",notes = "后台登录")
-    public ResponseMessage backstageLogin(@RequestParam(value = "password") String password,
-                                           @RequestParam(value = "username") String username,
-                                           @RequestParam(value = "phone",required = false) String phone){
+    public ResponseMessage backstageLogin(@RequestBody GetLoginDTO getLoginDTO){
         try{
+            String username = getLoginDTO.getUsername();
+            String password = getLoginDTO.getPassword();
+            String phone = getLoginDTO.getPhone();
             adminLoginService.verificationUser(username,phone,password);
         }catch (MyException e){
             log.error(e.getMessage(),e);
@@ -44,10 +46,11 @@ public class AdminController {
 
     @PostMapping("backstageRegister")
     @ApiOperation(value = "后台注册",notes = "后台新增帐号")
-    public ResponseMessage backstageRegister(@RequestParam(value = "password") String password,
-                                          @RequestParam(value = "username") String username,
-                                          @RequestParam(value = "phone",required = false) String phone){
+    public ResponseMessage backstageRegister(@RequestBody GetLoginDTO getLoginDTO){
         try{
+            String username = getLoginDTO.getUsername();
+            String password = getLoginDTO.getPassword();
+            String phone = getLoginDTO.getPhone();
             adminLoginService.addAdminUser(username,phone,password);
         }catch (MyException e){
             log.error(e.getMessage(),e);

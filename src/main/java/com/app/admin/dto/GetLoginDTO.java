@@ -5,8 +5,8 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 @Data
-@ApiModel("测试传入参数")
-public class GetTestDTO {
+@ApiModel("登录/注册所需参数")
+public class GetLoginDTO {
 
     @ApiModelProperty("姓名")
     private String username;
@@ -14,5 +14,8 @@ public class GetTestDTO {
 
     @ApiModelProperty("密码")
     private String password;
+
+    @ApiModelProperty("手机")
+    private String phone;
 
 }
