@@ -32,7 +32,7 @@ public class AdminController {
     @ApiOperation(value = "登录",notes = "后台登录")
     public ResponseMessage backstageLogin(@RequestParam(value = "password") String password,
                                            @RequestParam(value = "username") String username,
-                                           @RequestParam(value = "phone") String phone){
+                                           @RequestParam(value = "phone",required = false) String phone){
         try{
             adminLoginService.verificationUser(username,phone,password);
         }catch (MyException e){
@@ -46,7 +46,7 @@ public class AdminController {
     @ApiOperation(value = "后台注册",notes = "后台新增帐号")
     public ResponseMessage backstageRegister(@RequestParam(value = "password") String password,
                                           @RequestParam(value = "username") String username,
-                                          @RequestParam(value = "phone") String phone){
+                                          @RequestParam(value = "phone",required = false) String phone){
         try{
             adminLoginService.addAdminUser(username,phone,password);
         }catch (MyException e){
