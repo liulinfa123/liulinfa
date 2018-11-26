@@ -1,7 +1,10 @@
 package com.app.admin.model;
 
+import com.app.admin.service.impl.AdminLoginServiceImpl;
 import com.app.common.model.ParentModel;
 import lombok.Data;
+
+import java.util.Map;
 
 /**
  * @Author: ben
@@ -9,6 +12,8 @@ import lombok.Data;
  */
 @Data
 public class UserBackstage extends ParentModel {
+
+
 
     private String username;
 
