@@ -1,9 +1,10 @@
 package com.app.admin.controller;
 
 
-import cn.hutool.core.date.DateTime;
-import com.app.admin.dao.UserBackstageDao;
+import cn.hutool.core.bean.BeanUtil;
 import com.app.admin.dto.GetLoginDTO;
+import com.app.admin.dto.GetRegisterDTO;
+import com.app.admin.dto.ReturnLoginDTO;
 import com.app.admin.model.UserBackstage;
 import com.app.admin.service.AdminLoginService;
 import com.app.exception.MyException;
@@ -37,7 +38,9 @@ public class AdminController {
             String password = getLoginDTO.getPassword();
             String phone = getLoginDTO.getPhone();
             UserBackstage userBackstage = adminLoginService.verificationUser(username, phone, password);
-            return ResultUtil.success(userBackstage);
+            ReturnLoginDTO returnLoginDTO = new ReturnLoginDTO();
+            BeanUtil.copyProperties(userBackstage,returnLoginDTO);
+            return ResultUtil.success(returnLoginDTO);
         }catch (MyException e){
             log.error(e.getMessage(),e);
             return ResultUtil.error(ResultEnum.LOGIN_ERROR);
@@ -46,12 +49,14 @@ public class AdminController {
 
     @PostMapping("backstageRegister")
     @ApiOperation(value = "后台注册",notes = "后台新增帐号")
-    public ResponseMessage backstageRegister(@RequestBody GetLoginDTO getLoginDTO){
+    public ResponseMessage backstageRegister(@RequestBody GetRegisterDTO getRegisterDTO){
         try{
-            String username = getLoginDTO.getUsername();
-            String password = getLoginDTO.getPassword();
-            String phone = getLoginDTO.getPhone();
-            adminLoginService.addAdminUser(username,phone,password);
+            String username = getRegisterDTO.getUsername();
+            String password = getRegisterDTO.getPassword();
+            String phone = getRegisterDTO.getPhone();
+            String name = getRegisterDTO.getName();
+            String image = getRegisterDTO.getImage();
+            adminLoginService.addAdminUser(username,phone,password,name,image);
         }catch (MyException e){
             log.error(e.getMessage(),e);
             return ResultUtil.error(400,e.getMessage()== null ?ResultEnum.SYSTEM_ERROR.getMsg():e.getMessage());

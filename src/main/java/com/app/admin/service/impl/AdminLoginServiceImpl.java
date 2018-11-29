@@ -47,7 +47,7 @@ public class AdminLoginServiceImpl implements AdminLoginService {
      * @throws MyException
      */
     @Override
-    public String addAdminUser(String username, String phone, String password) throws MyException {
+    public String addAdminUser(String username, String phone, String password,String name,String image) throws MyException {
 
         UserBackstage userBackstage = StringUtils.isEmpty(username) ? userBackstageDao.findUserBackstageByphone(phone,password):userBackstageDao.findUserBackstageByusername(username, password);
 
@@ -56,6 +56,8 @@ public class AdminLoginServiceImpl implements AdminLoginService {
         }
         String id = UUID.randomUUID().toString();
         userBackstage = new UserBackstage();
+        userBackstage.setName(name);
+        userBackstage.setImage(image);
         userBackstage.setUsername(username);
         userBackstage.setPassword(password);
         userBackstage.setPhone(phone);

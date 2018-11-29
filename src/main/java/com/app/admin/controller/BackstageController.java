@@ -1,7 +1,7 @@
 package com.app.admin.controller;
 
 
-import com.app.admin.dto.GetLoginDTO;
+import com.app.admin.dto.GetRegisterDTO;
 import com.app.exception.ResponseMessage;
 import com.app.utils.ResultUtil;
 import io.swagger.annotations.Api;
@@ -18,7 +18,7 @@ public class BackstageController {
 
     @PostMapping("text")
     @ApiOperation(value = "测试接口",notes = "接口描述")
-    public ResponseMessage text(@RequestBody GetLoginDTO getTestDTO){
+    public ResponseMessage text(@RequestBody GetRegisterDTO getTestDTO){
         log.info(getTestDTO.getPassword());
         System.out.println(getTestDTO);
         return ResultUtil.success("you name is " + getTestDTO.getUsername());

@@ -4,13 +4,9 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
-/**
- * @Author: ben
- * @Date: 2018/11/29 11:31
- */
 @Data
-@ApiModel("登录所需参数")
-public class GetLoginDTO {
+@ApiModel("注册所需参数")
+public class GetRegisterDTO {
 
     @ApiModelProperty("用户名")
     private String username;
@@ -21,5 +17,11 @@ public class GetLoginDTO {
 
     @ApiModelProperty("手机")
     private String phone;
+
+    @ApiModelProperty("用户昵称")
+    private String name;
+
+    @ApiModelProperty("头像")
+    private String image;
 
 }

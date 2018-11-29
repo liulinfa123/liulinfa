@@ -12,13 +12,13 @@ import java.util.Map;
  */
 @Data
 public class UserBackstage extends ParentModel {
-
-
-
     private String username;
 
     private String password;
 
     private String phone;
 
+    private String name;
+
+    private String image;
 }

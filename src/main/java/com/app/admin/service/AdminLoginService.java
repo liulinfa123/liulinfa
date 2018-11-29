@@ -11,6 +11,6 @@ public interface AdminLoginService {
 
     UserBackstage verificationUser(String username,String phone,String password) throws MyException;
 
-    String addAdminUser(String username, String phone, String password) throws MyException;
+    String addAdminUser(String username, String phone, String password,String name,String image) throws MyException;
 
 }

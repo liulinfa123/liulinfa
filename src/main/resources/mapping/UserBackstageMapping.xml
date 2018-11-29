@@ -16,8 +16,8 @@
         <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.String">
             select UUID()
         </selectKey>
-        INSERT INTO user_backstage(id,username,create_date,update_date,password,phone) values (#{id},#{username},#{createDate},
-        #{updateDate},#{password},#{phone})
+        INSERT INTO user_backstage(id,username,create_date,update_date,password,phone,name,image) values (#{id},#{username},#{createDate},
+        #{updateDate},#{password},#{phone},#{name},#{image})
     </insert>
 
     <select id="findUserBackstageByusername"  resultMap="userBackstageMap">
