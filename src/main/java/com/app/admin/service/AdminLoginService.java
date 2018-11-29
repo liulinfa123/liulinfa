@@ -9,7 +9,7 @@ import com.app.exception.MyException;
  */
 public interface AdminLoginService {
 
-    void verificationUser(String username,String phone,String password) throws MyException;
+    UserBackstage verificationUser(String username,String phone,String password) throws MyException;
 
     String addAdminUser(String username, String phone, String password) throws MyException;
 

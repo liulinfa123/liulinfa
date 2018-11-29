@@ -36,12 +36,12 @@ public class AdminController {
             String username = getLoginDTO.getUsername();
             String password = getLoginDTO.getPassword();
             String phone = getLoginDTO.getPhone();
-            adminLoginService.verificationUser(username,phone,password);
+            UserBackstage userBackstage = adminLoginService.verificationUser(username, phone, password);
+            return ResultUtil.success(userBackstage);
         }catch (MyException e){
             log.error(e.getMessage(),e);
             return ResultUtil.error(ResultEnum.LOGIN_ERROR);
         }
-        return ResultUtil.success("");
     }
 
     @PostMapping("backstageRegister")

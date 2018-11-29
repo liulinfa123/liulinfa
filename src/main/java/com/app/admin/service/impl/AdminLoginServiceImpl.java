@@ -30,11 +30,12 @@ public class AdminLoginServiceImpl implements AdminLoginService {
      * @param password
      */
     @Override
-    public void verificationUser(String username, String phone, String password) throws MyException {
+    public UserBackstage verificationUser(String username, String phone, String password) throws MyException {
         UserBackstage userBackstage = StringUtils.isEmpty(username) ? userBackstageDao.findUserBackstageByphone(phone,password):userBackstageDao.findUserBackstageByusername(username, password);
         if (userBackstage == null) {
             throw new MyException(ResultEnum.LOGIN_ERROR);
         }
+        return userBackstage;
     }
 
     /**
