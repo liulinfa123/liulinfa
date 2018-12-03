@@ -17,6 +17,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(tokenInterceptor).addPathPatterns("/admin/*");
+        registry.addInterceptor(tokenInterceptor).addPathPatterns("/admin/*").excludePathPatterns("/admin/backstageLogin");
     }
 }
