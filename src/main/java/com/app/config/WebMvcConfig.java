@@ -1,9 +1,12 @@
 package com.app.config;
 
+import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import java.util.List;
 
 /**
  * @Author: ben
@@ -17,6 +20,10 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(tokenInterceptor).addPathPatterns("/admin/*").excludePathPatterns("/admin/backstageLogin");
+
+        List<String> url = Lists.newArrayList();
+        url.add("/admin/backstageLogin");
+        url.add("/admin/backstageRegister");
+        registry.addInterceptor(tokenInterceptor).addPathPatterns("/admin/*").excludePathPatterns(url);
     }
 }
