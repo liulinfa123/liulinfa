@@ -15,4 +15,9 @@ public interface UserBackstageDao {
 
     UserBackstage findUserBackstageByphone(@Param(value = "phone") String phone,@Param(value = "password") String password);
 
+    UserBackstage findUserBackstageById(@Param(value = "id") String id,@Param(value = "token") String token);
+
+    void UpdateTokenById(@Param(value = "token") String token,@Param(value = "id") String id);
+
+
 }

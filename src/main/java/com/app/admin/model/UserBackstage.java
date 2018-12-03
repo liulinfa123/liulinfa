@@ -21,4 +21,7 @@ public class UserBackstage extends ParentModel {
     private String name;
 
     private String image;
+
+    private String token;
+
 }

@@ -28,5 +28,13 @@
           select * from user_backstage where phone = #{phone} and password = #{password}
     </select>
 
+    <select id="findUserBackstageById" resultMap="userBackstageMap">
+        select * from user_backstage where id = #{id} and token = #{token}
+    </select>
+
+    <update id="UpdateTokenById">
+        update user_backstage set token = #{token} where id = #{id}
+    </update>
+
 
 </mapper>

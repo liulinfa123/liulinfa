@@ -59,10 +59,19 @@ public class AdminController {
             adminLoginService.addAdminUser(username,phone,password,name,image);
         }catch (MyException e){
             log.error(e.getMessage(),e);
-            return ResultUtil.error(400,e.getMessage()== null ?ResultEnum.SYSTEM_ERROR.getMsg():e.getMessage());
+            return ResultUtil.error(400,e.getErrorMsg()== null ?ResultEnum.SYSTEM_ERROR.getMsg():e.getMessage());
         }
         return ResultUtil.success("");
     }
+
+    @PostMapping("getText")
+    @ApiOperation(value = "后台测试",notes = "测试专用")
+    public ResponseMessage getText(){
+        System.out.println("getText");
+        return ResultUtil.success();
+
+    }
+
 
 
 

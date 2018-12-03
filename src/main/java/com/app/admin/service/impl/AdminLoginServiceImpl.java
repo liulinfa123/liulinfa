@@ -5,11 +5,13 @@ import com.app.admin.model.UserBackstage;
 import com.app.admin.service.AdminLoginService;
 import com.app.exception.MyException;
 import com.app.utils.ResultEnum;
+import com.app.utils.TokenUtil;
 import com.google.common.collect.Maps;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
@@ -19,6 +21,9 @@ import java.util.UUID;
  */
 @Service
 public class AdminLoginServiceImpl implements AdminLoginService {
+
+
+
 
     @Autowired
     private UserBackstageDao userBackstageDao;
@@ -35,6 +40,12 @@ public class AdminLoginServiceImpl implements AdminLoginService {
         if (userBackstage == null) {
             throw new MyException(ResultEnum.LOGIN_ERROR);
         }
+        // 生成token
+        String token = StringUtils.isEmpty(userBackstage.getToken()) ? TokenUtil.getInstance().makeToken():userBackstage.getToken();
+        // 将token存进map
+        TokenUtil.map.put(userBackstage.getId(),token);
+        // 也存进数据库
+        userBackstageDao.UpdateTokenById(token,userBackstage.getId());
         return userBackstage;
     }
 
