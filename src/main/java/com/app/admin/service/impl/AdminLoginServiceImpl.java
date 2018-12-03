@@ -1,6 +1,7 @@
 package com.app.admin.service.impl;
 
 import com.app.admin.dao.UserBackstageDao;
+import com.app.admin.dto.ChangePWDTO;
 import com.app.admin.model.UserBackstage;
 import com.app.admin.service.AdminLoginService;
 import com.app.exception.MyException;
@@ -10,10 +11,9 @@ import com.google.common.collect.Maps;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * @Author: ben
@@ -21,8 +21,6 @@ import java.util.UUID;
  */
 @Service
 public class AdminLoginServiceImpl implements AdminLoginService {
-
-
 
 
     @Autowired
@@ -72,8 +70,48 @@ public class AdminLoginServiceImpl implements AdminLoginService {
         userBackstage.setUsername(username);
         userBackstage.setPassword(password);
         userBackstage.setPhone(phone);
-        userBackstage.setId(UUID.randomUUID().toString());
+        userBackstage.setId(id);
         userBackstageDao.insertUserBackstage(userBackstage);
         return id;
     }
+
+    /**
+     * 注册后台帐号 这个是注释 写不写都可以
+     * @param username
+     * @param newPassword
+     * @param password
+     * @Param resultpassword
+     * @return
+     * @throws MyException
+     */
+    @Override
+    public void updateUserPassword(String username, String password, String newPassword,String resultpassword) throws MyException {
+        // 这里需要什么参数 username password newpassword resultpassword 必须先写在interface这里
+
+        // 然后你需要先判断哪些参数不能为null 用StringUtils.isEmpty判断
+        // 如果有一些必要参数为 null 就抛出异常 throw new MyException (400,然后你需要提示的东西)
+
+        if (StringUtils.isEmpty(username)||StringUtils.isEmpty(password)||StringUtils.isEmpty(newPassword)||StringUtils.isEmpty(resultpassword)){
+                throw new MyException(400,"参数不能为空");
+          }
+
+        // 然后需要根据username去查他原来的密码 跟前端传进来的password一不一样 如果不一样 同样抛出异常 如上
+        // 根据username 去查就需要写sql了
+        List<String> oldPasswords = userBackstageDao.findUserBackstageByUserName(username);
+        String oldPassword = "";
+        if (!CollectionUtils.isEmpty(oldPasswords)) {
+            oldPassword = oldPasswords.get(0);
+        }
+        if (!oldPassword.equals(password)){
+            throw new MyException(400,"密码不一致");
+        }
+        // 然后确认完之后
+        // 修改数据库的密码字段
+        userBackstageDao.updatePasswordByUserName(newPassword,username);
+        // 修改成功就返回 如果是void 就不用返回
+
+    }
+
+
+
 }

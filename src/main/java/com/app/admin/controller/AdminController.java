@@ -2,6 +2,7 @@ package com.app.admin.controller;
 
 
 import cn.hutool.core.bean.BeanUtil;
+import com.app.admin.dto.ChangePWDTO;
 import com.app.admin.dto.GetLoginDTO;
 import com.app.admin.dto.GetRegisterDTO;
 import com.app.admin.dto.ReturnLoginDTO;
@@ -70,6 +71,25 @@ public class AdminController {
         System.out.println("getText");
         return ResultUtil.success();
 
+    }
+
+    @PostMapping("changePW")
+    @ApiOperation(value = "修改密码测试",notes = "修改密码")
+    public  ResponseMessage changePW(@RequestBody ChangePWDTO changePWDTO){
+        try{
+            // 这里就是了
+            String username = changePWDTO.getUserName();
+            String password = changePWDTO.getPassWord();
+            String newpassword = changePWDTO.getNewPassWord();
+            String resultpassword = changePWDTO.getResultPassWord();
+            adminLoginService.updateUserPassword(username,password,newpassword,resultpassword);
+            System.out.println("修改成功");
+        }catch (MyException e){
+            // 记录日志很重要
+            log.error(e.getMessage(),e);
+            return ResultUtil.error(400,e.getErrorMsg()== null ?ResultEnum.SYSTEM_ERROR.getMsg():e.getMessage());
+        }
+        return ResultUtil.success("修改成功");
     }
 
 

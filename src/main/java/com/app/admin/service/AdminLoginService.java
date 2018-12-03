@@ -13,4 +13,6 @@ public interface AdminLoginService {
 
     String addAdminUser(String username, String phone, String password,String name,String image) throws MyException;
 
+    // 这里是interface 所以要实现这个
+    void updateUserPassword(String username, String password, String newPassword,String resultpassword) throws MyException;
 }

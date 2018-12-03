@@ -24,6 +24,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
         List<String> url = Lists.newArrayList();
         url.add("/admin/backstageLogin");
         url.add("/admin/backstageRegister");
+        url.add("/admin/changePW");
         registry.addInterceptor(tokenInterceptor).addPathPatterns("/admin/*").excludePathPatterns(url);
     }
 }

@@ -36,5 +36,12 @@
         update user_backstage set token = #{token} where id = #{id}
     </update>
 
+    <select id="findUserBackstageByUserName" resultType="string">
+        select password from user_backstage where username = #{username}
+    </select>
+
+    <update id="updatePasswordByUserName">
+        update user_backstage set password = #{password} where username = #{username}
+    </update>
 
 </mapper>
