@@ -1,5 +1,6 @@
 package com.app.admin.dto;
 
+import com.app.utils.SecurityUtil;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -20,6 +21,35 @@ public class ChangePWDTO {
     @ApiModelProperty("确认新密码")
     private String resultPassWord;
 
+    public String getUserName() {
+        return userName;
+    }
 
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
+    public String getPassWord() {
+        return SecurityUtil.encrypt(passWord);
+    }
+
+    public void setPassWord(String passWord) {
+        this.passWord = passWord;
+    }
+
+    public String getNewPassWord() {
+        return SecurityUtil.encrypt(newPassWord);
+    }
+
+    public void setNewPassWord(String newPassWord) {
+        this.newPassWord = newPassWord;
+    }
+
+    public String getResultPassWord() {
+        return SecurityUtil.encrypt(resultPassWord);
+    }
+
+    public void setResultPassWord(String resultPassWord) {
+        this.resultPassWord = resultPassWord;
+    }
 }

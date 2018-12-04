@@ -58,7 +58,6 @@ public class AdminController {
             String phone = getRegisterDTO.getPhone();
             String name = getRegisterDTO.getName();
             String image = getRegisterDTO.getImage();
-            password = SecurityUtil.decrypt(password);
             adminLoginService.addAdminUser(username,phone,password,name,image);
         }catch (MyException e){
             log.error(e.getMessage(),e);
