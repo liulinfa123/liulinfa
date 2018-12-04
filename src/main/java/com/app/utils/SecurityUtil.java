@@ -1,5 +1,6 @@
 package com.app.utils;
 
+import com.app.configure.SensitivityProperties;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.binary.Hex;
@@ -14,6 +15,7 @@ import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * @Author: ben
@@ -21,17 +23,19 @@ import java.util.Arrays;
  */
 @Component
 @Slf4j
-@Data
-@Configuration
-@ConfigurationProperties
-@PropertySource("classpath:sensitivity.properties")
 public class SecurityUtil {
 
-    @Value("${enable}")
-    private static boolean enable;
+    public static String salt;
 
-    @Value("${salt}")
-    private static String salt;
+    public static List<String> encryptApiField;
+
+    public static List<String> decryptApiField;
+
+    public SecurityUtil(SensitivityProperties sensitivity) {
+        salt = sensitivity.getSalt();
+        encryptApiField = sensitivity.getEncryptApiField();
+        decryptApiField = sensitivity.getDecryptApiField();
+    }
 
     private final static int KEY_SIZE = 16;
 
@@ -42,9 +46,6 @@ public class SecurityUtil {
      */
     public static String encrypt(String content){
         try{
-            if (enable) {
-                return content;
-            }
             if (StringUtils.isNotBlank(content) && StringUtils.isNotBlank(salt)) {
                 return encryptMethod(content,salt);
             }
@@ -80,9 +81,6 @@ public class SecurityUtil {
     }
 
     public static String decrypt(String content){
-        if (enable) {
-            return content;
-        }
         if (!StringUtils.isEmpty(content) && !StringUtils.isEmpty(salt)) {
             try{
                return decryptMethod(content,salt);

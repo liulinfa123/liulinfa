@@ -12,6 +12,7 @@ import com.app.exception.MyException;
 import com.app.exception.ResponseMessage;
 import com.app.utils.ResultEnum;
 import com.app.utils.ResultUtil;
+import com.app.utils.SecurityUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -57,6 +58,7 @@ public class AdminController {
             String phone = getRegisterDTO.getPhone();
             String name = getRegisterDTO.getName();
             String image = getRegisterDTO.getImage();
+            password = SecurityUtil.decrypt(password);
             adminLoginService.addAdminUser(username,phone,password,name,image);
         }catch (MyException e){
             log.error(e.getMessage(),e);

@@ -14,6 +14,8 @@ import java.util.List;
 @Data
 public class SensitivityProperties {
 
+    private String salt;
+
     private Boolean enable;
 
     private List<String> encryptApiField;

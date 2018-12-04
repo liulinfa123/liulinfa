@@ -6,6 +6,7 @@ import com.app.admin.model.UserBackstage;
 import com.app.admin.service.AdminLoginService;
 import com.app.exception.MyException;
 import com.app.utils.ResultEnum;
+import com.app.utils.SecurityUtil;
 import com.app.utils.TokenUtil;
 import com.google.common.collect.Maps;
 import org.apache.commons.lang3.StringUtils;
@@ -68,7 +69,7 @@ public class AdminLoginServiceImpl implements AdminLoginService {
         userBackstage.setName(name);
         userBackstage.setImage(image);
         userBackstage.setUsername(username);
-        userBackstage.setPassword(password);
+        userBackstage.setPassword(SecurityUtil.encrypt(password));
         userBackstage.setPhone(phone);
         userBackstage.setId(id);
         userBackstageDao.insertUserBackstage(userBackstage);
@@ -86,17 +87,9 @@ public class AdminLoginServiceImpl implements AdminLoginService {
      */
     @Override
     public void updateUserPassword(String username, String password, String newPassword,String resultpassword) throws MyException {
-        // 这里需要什么参数 username password newpassword resultpassword 必须先写在interface这里
-
-        // 然后你需要先判断哪些参数不能为null 用StringUtils.isEmpty判断
-        // 如果有一些必要参数为 null 就抛出异常 throw new MyException (400,然后你需要提示的东西)
-
         if (StringUtils.isEmpty(username)||StringUtils.isEmpty(password)||StringUtils.isEmpty(newPassword)||StringUtils.isEmpty(resultpassword)){
                 throw new MyException(400,"参数不能为空");
-          }
-
-        // 然后需要根据username去查他原来的密码 跟前端传进来的password一不一样 如果不一样 同样抛出异常 如上
-        // 根据username 去查就需要写sql了
+        }
         List<String> oldPasswords = userBackstageDao.findUserBackstageByUserName(username);
         String oldPassword = "";
         if (!CollectionUtils.isEmpty(oldPasswords)) {
@@ -105,11 +98,7 @@ public class AdminLoginServiceImpl implements AdminLoginService {
         if (!oldPassword.equals(password)){
             throw new MyException(400,"密码不一致");
         }
-        // 然后确认完之后
-        // 修改数据库的密码字段
         userBackstageDao.updatePasswordByUserName(newPassword,username);
-        // 修改成功就返回 如果是void 就不用返回
-
     }
 
 
