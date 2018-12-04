@@ -79,7 +79,8 @@ public class AdminController {
     @ApiOperation(value = "修改密码测试",notes = "修改密码")
     public  ResponseMessage changePW(@RequestBody ChangePWDTO changePWDTO){
         try{
-            // 这里就是了
+            // 这里就是
+            //
             String username = changePWDTO.getUserName();
             String password = changePWDTO.getPassWord();
             String newpassword = changePWDTO.getNewPassWord();
