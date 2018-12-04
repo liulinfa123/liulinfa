@@ -53,3 +53,9 @@ pagehelper:
     reasonable: true
     supportMethodsArguments: true
     params: count=countSql
+
+
+#swagger
+sop:
+  swagger:
+    host: localhost:8008

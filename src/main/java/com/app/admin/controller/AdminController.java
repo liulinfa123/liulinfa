@@ -71,7 +71,6 @@ public class AdminController {
     public ResponseMessage getText(){
         System.out.println("getText");
         return ResultUtil.success();
-
     }
 
     @PostMapping("changePW")

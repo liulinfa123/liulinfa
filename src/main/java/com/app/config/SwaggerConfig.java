@@ -3,6 +3,7 @@ package com.app.config;
 
 import com.google.common.collect.Lists;
 import io.swagger.annotations.Api;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -24,9 +25,13 @@ import java.util.List;
 @EnableSwagger2
 public class SwaggerConfig {
 
+    @Value("${sop.swagger.host}")
+    private String host;
+
     @Bean
     public Docket api(){
         return new Docket(DocumentationType.SWAGGER_2)
+                .host(host)
                 .apiInfo(apiInfo())
                 .select()
                 .apis(RequestHandlerSelectors.withClassAnnotation(Api.class))
@@ -65,10 +70,6 @@ public class SwaggerConfig {
         list.add(securityContext);
         return list;
     }
-
-
-
-
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("api文档")
