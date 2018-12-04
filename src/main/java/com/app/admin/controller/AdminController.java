@@ -44,7 +44,7 @@ public class AdminController {
             BeanUtil.copyProperties(userBackstage,returnLoginDTO);
             return ResultUtil.success(returnLoginDTO);
         }catch (MyException e){
-            log.error(e.getMessage(),e);
+            log.error(e.getErrorMsg(),e);
             return ResultUtil.error(ResultEnum.LOGIN_ERROR);
         }
     }
@@ -60,8 +60,8 @@ public class AdminController {
             String image = getRegisterDTO.getImage();
             adminLoginService.addAdminUser(username,phone,password,name,image);
         }catch (MyException e){
-            log.error(e.getMessage(),e);
-            return ResultUtil.error(400,e.getErrorMsg()== null ?ResultEnum.SYSTEM_ERROR.getMsg():e.getMessage());
+            log.error(e.getErrorMsg(),e);
+            return ResultUtil.error(400,e.getErrorMsg()== null ?ResultEnum.SYSTEM_ERROR.getMsg():e.getErrorMsg());
         }
         return ResultUtil.success("");
     }
@@ -87,8 +87,8 @@ public class AdminController {
             System.out.println("修改成功");
         }catch (MyException e){
             // 记录日志很重要
-            log.error(e.getMessage(),e);
-            return ResultUtil.error(400,e.getErrorMsg()== null ?ResultEnum.SYSTEM_ERROR.getMsg():e.getMessage());
+            log.error(e.getErrorMsg(),e);
+            return ResultUtil.error(400,e.getErrorMsg()== null ?ResultEnum.SYSTEM_ERROR.getMsg():e.getErrorMsg());
         }
         return ResultUtil.success("修改成功");
     }

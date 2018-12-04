@@ -32,7 +32,7 @@ public class GetLoginDTO {
     }
 
     public String getPassword() {
-        return SecurityUtil.encrypt(password);
+        return SecurityUtil.decrypt(password);
     }
 
     public void setPassword(String password) {
