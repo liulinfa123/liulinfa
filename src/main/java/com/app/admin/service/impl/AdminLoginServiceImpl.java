@@ -69,7 +69,7 @@ public class AdminLoginServiceImpl implements AdminLoginService {
         userBackstage.setName(name);
         userBackstage.setImage(image);
         userBackstage.setUsername(username);
-        userBackstage.setPassword(SecurityUtil.encrypt(password));
+        userBackstage.setPassword(password);
         userBackstage.setPhone(phone);
         userBackstage.setId(id);
         userBackstageDao.insertUserBackstage(userBackstage);
@@ -77,7 +77,7 @@ public class AdminLoginServiceImpl implements AdminLoginService {
     }
 
     /**
-     * 注册后台帐号 这个是注释 写不写都可以
+     * 修改密码 这个是注释 写不写都可以
      * @param username
      * @param newPassword
      * @param password

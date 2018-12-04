@@ -80,6 +80,14 @@ public class SecurityUtil {
         }
     }
 
+    /**
+     * aes128 解密
+     *
+     * @param content
+     *            需要解密的内容
+     * @return 解密内容
+     * @throws Exception
+     */
     public static String decrypt(String content){
         if (!StringUtils.isEmpty(content) && !StringUtils.isEmpty(salt)) {
             try{
