@@ -2,6 +2,7 @@ package com.app.admin.dao;
 
 import com.app.admin.model.UserBackstage;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -19,11 +20,12 @@ public interface UserBackstageDao {
 
     UserBackstage findUserBackstageById(@Param(value = "id") String id,@Param(value = "token") String token);
 
-    void UpdateTokenById(@Param(value = "token") String token,@Param(value = "id") String id);
+    void updateTokenById(UserBackstage userBackstage);
 
+    @Select("select password from user_backstage where username = #{username}")
     List<String> findUserBackstageByUserName(@Param(value = "username") String username);
 
-    void updatePasswordByUserName(@Param(value = "password") String password,@Param(value = "username") String username);
+    void updatePasswordByUserName(UserBackstage userBackstage);
 
 
 

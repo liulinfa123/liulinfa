@@ -43,8 +43,9 @@ public class AdminLoginServiceImpl implements AdminLoginService {
         String token = StringUtils.isEmpty(userBackstage.getToken()) ? TokenUtil.getInstance().makeToken():userBackstage.getToken();
         // 将token存进map
         TokenUtil.map.put(userBackstage.getId(),token);
+        userBackstage.setToken(token);
         // 也存进数据库
-        userBackstageDao.UpdateTokenById(token,userBackstage.getId());
+        userBackstageDao.updateTokenById(userBackstage);
         return userBackstage;
     }
 
@@ -90,15 +91,18 @@ public class AdminLoginServiceImpl implements AdminLoginService {
         if (StringUtils.isEmpty(username)||StringUtils.isEmpty(password)||StringUtils.isEmpty(newPassword)||StringUtils.isEmpty(resultpassword)){
                 throw new MyException(400,"参数不能为空");
         }
-        List<String> oldPasswords = userBackstageDao.findUserBackstageByUserName(username);
-        String oldPassword = "";
-        if (!CollectionUtils.isEmpty(oldPasswords)) {
-            oldPassword = oldPasswords.get(0);
+
+        UserBackstage userBackstage = userBackstageDao.findUserBackstageByusername(username, password);
+
+        if (null == userBackstage) {
+            throw new MyException(400,"找不到该用户");
         }
+        String oldPassword = userBackstage.getPassword();
         if (!oldPassword.equals(password)){
             throw new MyException(400,"密码不一致");
         }
-        userBackstageDao.updatePasswordByUserName(newPassword,username);
+        userBackstage.setPassword(newPassword);
+        userBackstageDao.updatePasswordByUserName(userBackstage);
     }
 
 
