@@ -78,7 +78,7 @@ public class AdminLoginServiceImpl implements AdminLoginService {
     }
 
     /**
-     * 修改密码 这个是注释 写不写都可以
+     * 修改密码
      * @param username
      * @param newPassword
      * @param password
