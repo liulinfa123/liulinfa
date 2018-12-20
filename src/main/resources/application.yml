@@ -36,6 +36,8 @@ spring:
     max-wait: 60000
     #一个连接在池中最小生存的时间
     min-evictable-idle-time-millis: 300000
+    filters: stat,wall,log4j
+    logSlowSql: true
 
 #  data:
 #    mongodb:
@@ -54,8 +56,3 @@ pagehelper:
     supportMethodsArguments: true
     params: count=countSql
 
-
-#swagger
-sop:
-  swagger:
-    host: localhost:8008
