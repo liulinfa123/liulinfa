@@ -65,7 +65,7 @@ public class CommonDataInject {
         }else {
             Object saveObj = args[0];
             log.info(saveObj.getClass().getSuperclass().getName());
-            if (saveObj.getClass().getSuperclass().getName().endsWith("ParentModel")) {
+            if (saveObj.getClass().getSuperclass().getName().endsWith("ParentModel") || saveObj.getClass().getSuperclass().getName().endsWith("java.lang.Object")) {
                 //单个保存
                 setDate(saveObj);
             } else {

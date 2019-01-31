@@ -25,9 +25,6 @@ public class MyResponseBodyAdvice implements ResponseBodyAdvice {
     @Autowired
     private SensitivityProperties sensitivityProperties;
 
-    @Value("${server.servlet.context-path}")
-    private String contextPath;
-
     private String[] decodeFields = {};
 
     private String[] undecodeFields = {};
@@ -67,8 +64,6 @@ public class MyResponseBodyAdvice implements ResponseBodyAdvice {
         List<String> encryptApiField = sensitivityProperties.getEncryptApiField();
         // 解密
         List<String> decryptApiField = sensitivityProperties.getDecryptApiField();
-
-//        SecretField serializedField = methodParameter.getMethodAnnotation(SecretField.class);
 
 
 

@@ -1,6 +1,7 @@
 package com.app.admin.dao;
 
 import com.app.admin.model.LoginUser;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
 * @Author: ben
